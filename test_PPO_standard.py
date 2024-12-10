@@ -17,14 +17,14 @@ if not os.path.exists(logdir):
 env = gym.make('CarRacing-v3', render_mode = "rgb_array")
 env.reset()
 
-model = PPO('CnnPolicy', env, verbose=1, tensorboard_log=logdir)
+model = PPO('CnnPolicy', env, verbose=1)
 TIMESTEPS = 50000
 
 
 for i in range(10):
     print(f"==== Episode {i} ====")
 
-    model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps=False, tb_log_name= "PPO")
+    model.learn(total_timesteps=TIMESTEPS, reset_num_timesteps=False, tb_log_name= "PPO", progress_bar=True)
     model.save(f"{models_dir}/{TIMESTEPS*i}")
     
     obs, info = env.reset()
