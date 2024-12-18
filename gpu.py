@@ -24,11 +24,7 @@ class CustomCallback(BaseCallback):
 
 # Define algorithms and policies
 algorithms_and_policies = {
-    "PPO": [PPO, ['MlpPolicy','CnnPolicy']],
-    "A2C": [A2C, ['MlpPolicy', 'CnnPolicy']],
-    "SAC": [SAC, ['MlpPolicy', 'CnnPolicy']],
-    "TD3": [TD3, ['MlpPolicy', 'CnnPolicy']],
-    "DDPG": [DDPG, ['MlpPolicy', 'CnnPolicy']]
+    "PPO": [PPO, ['CnnPolicy']],
 }
 
 # Training loop
@@ -58,8 +54,8 @@ for algorithm_name, (algorithm_class, policies) in algorithms_and_policies.items
         model.set_logger(new_logger)
 
         # Training parameters
-        TIMESTEPS = 25000
-        NUM_ITERATIONS = 15
+        TIMESTEPS = 10000
+        NUM_ITERATIONS = 50
 
         for i in range(1, NUM_ITERATIONS + 1):
             print(f"Training iteration {i}/{NUM_ITERATIONS} for {algorithm_name} with {policy}")
